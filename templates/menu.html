@@ -1,40 +1,41 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}"/>
+</head>
 <body>
+    <div id ="content">
+        <h1 id="main-head">{{name}}</h1>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul class=flashes>
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
 
-    <h1>{{name}}</h1>
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        <ul class=flashes>
-        {% for message in messages %}
-          <li>{{ message }}</li>
+        <a href = '{{url_for("newMenuItem", restaurant_id = restaurant_id) }}'>
+        Create New Item</a>
+
+        {% for i in items %}
+            <div class="item">
+
+                <p>{{i.name}}</p>
+
+                <p>{{i.description}}</p>
+
+                <p> $ {{i.price}} </p>
+
+                <a href='{{url_for("editMenuItem", restaurant_id = restaurant_id, menu_id = i.id )}}'>Edit</a>
+
+                <a href='{{url_for("deleteMenuItem", restaurant_id = restaurant_id, menu_id = i.id, item=i )}}'>Delete</a>
+
+            </div>
         {% endfor %}
-        </ul>
-      {% endif %}
-    {% endwith %}
-
-    <a href = '{{url_for("newMenuItem", restaurant_id = restaurant_id) }}'>
-    Create New Item</a>
-
-    {% for i in items %}
-
-    <div>
-
-    <p>{{i.name}}</p>
-
-    <p>{{i.description}}</p>
-
-    <p> $ {{i.price}} </p>
-
-    <a href='{{url_for("editMenuItem", restaurant_id = restaurant_id, menu_id = i.id )}}'>Edit</a>
-
-    <a href='{{url_for("deleteMenuItem", restaurant_id = restaurant_id, menu_id = i.id, item=i )}}'>Delete</a>
 
     </div>
-
-
-
-    {% endfor %}
 </body>
 
 </html>

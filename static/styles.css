@@ -16,5 +16,5 @@ body {
 }
 
 .item {
-    background: lightblue;
+    border-bottom: dotted;
 }

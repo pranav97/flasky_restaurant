@@ -6,6 +6,9 @@
 <body>
     <div id ="content">
         <h1 id="main-head">{{name}}</h1>
+        <a href="{{ url_for('showRestaurants', restaurant_id = restaurant_id) }}">
+            <button>Back</button>
+        </a><br>
         {% with messages = get_flashed_messages() %}
           {% if messages %}
             <ul class=flashes>
@@ -18,8 +21,15 @@
 
         <a href = '{{url_for("newMenuItem", restaurant_id = restaurant_id) }}'>
         Create New Item</a>
+        <h3>Appetizers</h3>
+        {% if not entre: %}
+            <div class="item">
 
-        {% for i in items %}
+                <p>No Items to show here</p>
+
+            </div>
+        {% endif %}
+        {% for i in entre %}
             <div class="item">
 
                 <p>{{i.name}}</p>
@@ -34,6 +44,55 @@
 
             </div>
         {% endfor %}
+        <h3>Main Course</h3>
+        {% if not main_course: %}
+            <div class="item">
+
+                <p>No Items to show here</p>
+
+            </div>
+        {% endif %}
+        {% for i in main_course %}
+            <div class="item">
+
+                <p>{{i.name}}</p>
+
+                <p>{{i.description}}</p>
+
+                <p> $ {{i.price}} </p>
+
+                <a href='{{url_for("editMenuItem", restaurant_id = restaurant_id, menu_id = i.id )}}'>Edit</a>
+
+                <a href='{{url_for("deleteMenuItem", restaurant_id = restaurant_id, menu_id = i.id, item=i )}}'>Delete</a>
+
+            </div>
+        {% endfor %}
+
+        <h3>Desserts</h3>
+         {% if not desserts: %}
+            <div class="item">
+
+                <p>No Items to show here</p>
+
+            </div>
+        {% endif %}
+        {% for i in desserts %}
+            <div class="item">
+
+                <p>{{i.name}}</p>
+
+                <p>{{i.description}}</p>
+
+                <p> $ {{i.price}} </p>
+
+                <a href='{{url_for("editMenuItem", restaurant_id = restaurant_id, menu_id = i.id )}}'>Edit</a>
+
+                <a href='{{url_for("deleteMenuItem", restaurant_id = restaurant_id, menu_id = i.id, item=i )}}'>Delete</a>
+
+            </div>
+        {% endfor %}
+
+
 
     </div>
 </body>

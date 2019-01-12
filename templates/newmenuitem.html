@@ -6,6 +6,9 @@
 <body>
 <div id ="content">
     <h3 id="main-head">New Menu Item</h3>
+    <a href="{{ url_for('showRestaurants', restaurant_id = restaurant_id) }}">
+        <button>Back</button>
+    </a>
     <form action="{{ url_for('newMenuItem', restaurant_id=restaurant_id )}}" method='post'>
         Name: <input type="text" name="name"><br>
         Description: <input type="text" name="description"><br>

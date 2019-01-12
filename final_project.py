@@ -87,9 +87,12 @@ def deleteRestaurant(restaurant_id):
 def showMenu(restaurant_id):
     session = DBSession()
     restaurant = session.query(Restaurant).filter_by(id=restaurant_id).first()
-    items = session.query(MenuItem).filter_by(restaurant_id=restaurant_id).all()
+    # items = session.query(MenuItem).filter_by(restaurant_id=restaurant_id).all()
     # return render_template("menu.html", items=items, restaurant_id=restaurant_id, name=restaurant['name'])
-    return render_template('menu.html', restaurant_id=restaurant_id, name=restaurant.name, items=items)
+    entre = session.query(MenuItem).filter_by(restaurant_id=restaurant_id, course="Appetizer").all()
+    mainc = session.query(MenuItem).filter_by(restaurant_id=restaurant_id, course="Main Course").all()
+    dess = session.query(MenuItem).filter_by(restaurant_id=restaurant_id, course="Dessert").all()
+    return render_template('menu.html', restaurant_id=restaurant_id, name=restaurant.name, entre=entre, main_course=mainc, desserts=dess)
 
 
 @app.route('/restaurant/<int:restaurant_id>/menu/new', methods=['GET', 'POST'])

@@ -19,16 +19,15 @@ from flask import Flask, \
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, Restaurant, MenuItem
-import os
+
+
 app = Flask(__name__)
-app.config['SESSION_TYPE'] = 'filesystem'
-app.config['SECRET_KEY'] = os.urandom(24)
 
 engine = create_engine('sqlite:///restaurantmenu.db')
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
-
 session = DBSession()
+app.secret_key = 'obvious key'
 
 
 @app.route('/')

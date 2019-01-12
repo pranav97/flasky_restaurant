@@ -52,7 +52,6 @@ def newRestaurant():
 
 @app.route('/restaurant/edit/<int:restaurant_id>/')
 def editRestaurant(restaurant_id):
-
     return render_template("editrestaurant.html", restaurant=restaurant)
 
 @app.route('/restaurant/delete/<int:restaurant_id>/',  methods=['GET', 'POST'])
@@ -60,12 +59,12 @@ def deleteRestaurant(restaurant_id):
     session = DBSession()
     edited = session.query(Restaurant).filter_by(id=restaurant_id).one()
     if request.method == "POST":
-        return "posted up"
-        # if edited:
-        #     session.delete(edited)
-        #     session.commit()
-        #     flash("Deleted menu item")
-        #     return redirect(url_for('showRestaurants'))
+        # return "posted up"
+        if edited:
+            session.delete(edited)
+            session.commit()
+            flash("Deleted menu item")
+            return redirect(url_for('showRestaurants'))
 
     else:
         return render_template("deleterestaurant.html", restaurant=edited)

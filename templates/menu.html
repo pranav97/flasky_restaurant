@@ -6,9 +6,7 @@
 <body>
     <div id ="content">
         <h1 id="main-head">{{name}}</h1>
-        <a href="{{ url_for('showRestaurants', restaurant_id = restaurant_id) }}">
-            <button>Back</button>
-        </a><br>
+
         {% with messages = get_flashed_messages() %}
           {% if messages %}
             <ul class=flashes>
@@ -91,9 +89,9 @@
 
             </div>
         {% endfor %}
-
-
-
+        <a href="{{ url_for('showRestaurants', restaurant_id = restaurant_id) }}">
+            <button>Back</button>
+        </a><br>
     </div>
 </body>
 

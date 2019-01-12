@@ -6,13 +6,20 @@
 <body>
 <div id ="content">
     <form action= "{{url_for('editMenuItem', restaurant_id = restaurant_id, menu_id=item.id)}}" method = 'POST'>
+        Name: <input type="text" name="name" value="{{item.name}}"><br>
+        Description: <input type="text" name="description" value="{{item.description}}"><br>
+        Course:
+            <select name="course" selected="Appetizer">
+               <option value = "Appetizer">Appetizer</option>
+                   <option value = "Appetizer">Appetizer</option>
 
-    <p id="main-head">Name:</p>
-    <input type = 'text' size='30' name = 'name' placeholder = '{{item.name}}'>
-
-    <input type='submit' value='Edit'>
+               <option value = "Main Course">Main Course</option>
+               <option value = "Dessert">Dessert</option>
+             </select><br>
+        Price: <input type="text" name="price" value="{{item.price}}"><br>
+        <input type='submit' value='Edit'>
     </form>
-    <a href= "{{url_for('restaurantMenu', restaurant_id= item.restaurant_id)}}">Cancel</a>
+    <a href= "{{url_for('showMenu', restaurant_id= item.restaurant_id)}}">Cancel</a>
 </div>
 </body>
 </html>

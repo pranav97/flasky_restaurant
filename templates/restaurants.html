@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Restaurants</title>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}"/>
 </head>
 <body>
+<div id ="content">
+
     <h1 id="main-head">Restaurants</h1>
 
     <a href='{{ url_for("newRestaurant") }}'>New</a>
@@ -18,6 +21,6 @@
             </p>
         </div>
     {% endfor %}
-
+</div>
 </body>
 </html>

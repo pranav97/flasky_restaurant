@@ -108,15 +108,18 @@ def newMenuItem(restaurant_id):
         return render_template('newmenuitem.html', restaurant_id=restaurant_id)
 
 
-@app.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/edit')
+@app.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/edit', methods=['GET', 'POST'])
 def editMenuItem(restaurant_id, menu_id):
     session = DBSession()  # create a new session
     edited = session.query(MenuItem).filter_by(id=menu_id).one()
     # print(edited.name)
     if request.method == 'POST':
-        session = DBSession()
         if request.form['name']:
             edited.name = request.form['name']
+            edited.description = request.form['description']
+            edited.price = request.form['price']
+            edited.course = request.form['course']
+            edited.restaurant_id = restaurant_id
         session.add(edited)
         session.commit()
         flash("Edited menu item")

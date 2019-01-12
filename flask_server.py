@@ -13,12 +13,11 @@ engine = create_engine('sqlite:///restaurantmenu.db')
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
-session = DBSession()
 
 
 @app.route('/')
 def defaultRestaurantMenu():
-
+    session = DBSession()
     restaurant = session.query(Restaurant).first()
     items = session.query(MenuItem).filter_by(restaurant_id=restaurant.id)
     return render_template('menu.html', restaurant_id=restaurant.id, name=restaurant.name, items=items)
@@ -41,6 +40,7 @@ def newMenuItem(restaurant_id):
     #
     # DBSession = sessionmaker(bind=engine)
     # session = DBSession()
+    session = DBSession()
 
     if request.method == 'POST':
         newItem = MenuItem(name=request.form['name'], description=request.form[
@@ -101,12 +101,15 @@ def deleteMenuItem(restaurant_id, menu_id):
 
 @app.route('/restaurants/<int:restaurant_id>/menu/JSON')
 def restaurantMenuJSON(restaurant_id):
+    session = DBSession()
+
     # restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
     items = session.query(MenuItem).filter_by(restaurant_id = restaurant_id).all()
     return jsonify(MenuItems=[i.serialize for i in items])
 
 @app.route('/restaurants/<int:restaurant_id>/menu/<int:menu_id>/JSON')
 def menuItemJSON(restaurant_id, menu_id):
+    session = DBSession()
     # items = session.query(Restaurant).filter_by(restaurant_id=restaurant_id).all()
     # return jsonify(MenuItem=items[menu_id].serialize())
     items = session.query(MenuItem).filter_by(id = menu_id).one()

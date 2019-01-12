@@ -9,7 +9,7 @@
         <p id="main-head">Are you sure you want to delete {{item.name}}</p>
         <input type='submit' value='Yes'>
     </form>
-    <a href= "{{url_for('restaurantMenu', restaurant_id= item.restaurant_id)}}">Cancel</a>
+    <a href= "{{url_for('showMenu', restaurant_id= item.restaurant_id)}}">Cancel</a>
 </div>
 </body>
 </html>

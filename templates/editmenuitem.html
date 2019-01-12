@@ -10,11 +10,9 @@
         Description: <input type="text" name="description" value="{{item.description}}"><br>
         Course:
             <select name="course" selected="Appetizer">
-               <option value = "Appetizer">Appetizer</option>
-                   <option value = "Appetizer">Appetizer</option>
-
-               <option value = "Main Course">Main Course</option>
-               <option value = "Dessert">Dessert</option>
+               <option value = "Appetizer" {% if item.course=="Appetizer" %} selected="selected" {% endif %} >Appetizer</option>
+               <option value = "Main Course" {% if item.course=="Main Course" %} selected="selected" {% endif %} >Main Course</option>
+               <option value = "Dessert" {% if item.course=="Dessert" %} selected="selected" {% endif %} >Dessert</option>
              </select><br>
         Price: <input type="text" name="price" value="{{item.price}}"><br>
         <input type='submit' value='Edit'>

@@ -57,12 +57,11 @@ def editRestaurant(restaurant_id):
     session = DBSession()  # create a new session
     to_edit = session.query(Restaurant).filter_by(id=restaurant_id).one()
     if request.method == 'POST':
-        # return "Posted"
         if request.form['name']:
             to_edit.name = request.form['name']
         session.add(to_edit)
         session.commit()
-        flash("to_edit menu item")
+        flash("{} menu item".format(to_edit.name))
         return redirect(url_for('showRestaurants'))
     else:
         return render_template(
@@ -141,9 +140,36 @@ def deleteMenuItem(restaurant_id, menu_id):
             session.commit()
             flash("Deleted menu item")
             return redirect(url_for('showMenu', restaurant_id=restaurant_id))
-
     else:
         return render_template("deletemenuitem.html", restaurant_id=restaurant_id, menu_id=menu_id, item=edited)
+
+
+# api end points
+@app.route('/restaurants/JSON')
+def restaurantsJSON():
+    session = DBSession()
+    items = session.query(Restaurant).all()
+    return jsonify(Restaurants=[i.serialize for i in items])
+
+
+# api end points
+@app.route('/restaurant/<int:restaurant_id>/menu/JSON')
+def restaurantMenuJSON(restaurant_id):
+    session = DBSession()
+
+    # restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
+    items = session.query(MenuItem).filter_by(restaurant_id = restaurant_id).all()
+    return jsonify(MenuItems=[i.serialize for i in items])
+
+
+@app.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/JSON')
+def menuItemJSON(restaurant_id, menu_id):
+    session = DBSession()
+    # items = session.query(Restaurant).filter_by(restaurant_id=restaurant_id).all()
+    # return jsonify(MenuItem=items[menu_id].serialize())
+    items = session.query(MenuItem).filter_by(id = menu_id).one()
+    return jsonify(MenuItem=items.serialize)
+
 
 
 if __name__ == '__main__':

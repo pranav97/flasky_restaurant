@@ -23,7 +23,6 @@ from database_setup import Base, Restaurant, MenuItem
 import sys
 import os.path
 
-
 app = Flask(__name__)
 # Base.metadata.bind = engine
 engine = create_engine('sqlite:///restaurantmenu.db')

@@ -20,14 +20,38 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, Restaurant, MenuItem
 
+import sys
+import os.path
+
 
 app = Flask(__name__)
-
+# Base.metadata.bind = engine
 engine = create_engine('sqlite:///restaurantmenu.db')
-Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
-app.secret_key = 'obvious key'
+# session.secret_key = os.urandom(24)
+
+app.secret_key = os.urandom(24)
+
+def install_secret_key(app, filename='secret_key'):
+    """Configure the SECRET_KEY from a file
+    in the instance directory.
+
+    If the file does not exist, print instructions
+    to create it from a shell with a random key,
+    then exit.
+
+    """
+    filename = os.path.join(app.instance_path, filename)
+    try:
+        session.secret_key = open(filename, 'rb').read()
+    except IOError:
+        print('Error: No secret key. Create it with:')
+        if not os.path.isdir(os.path.dirname(filename)):
+            print('mkdir -p', os.path.dirname(filename))
+        print('head -c 24 /dev/urandom >', filename)
+        sys.exit(1)
+
 
 
 @app.route('/')
@@ -174,4 +198,7 @@ def menuItemJSON(restaurant_id, menu_id):
 
 if __name__ == '__main__':
     app.debug = True
+
+    install_secret_key(app)
+
     app.run(host='0.0.0.0', port=5000)

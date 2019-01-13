@@ -53,6 +53,7 @@ def install_secret_key(app, filename='secret_key'):
 
 
 
+install_secret_key(app)
 @app.route('/')
 @app.route('/restaurants/')
 def showRestaurants():
@@ -198,6 +199,5 @@ def menuItemJSON(restaurant_id, menu_id):
 if __name__ == '__main__':
     app.debug = True
 
-    install_secret_key(app)
 
     app.run(host='0.0.0.0', port=5000)

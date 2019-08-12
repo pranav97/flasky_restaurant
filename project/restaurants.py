@@ -53,7 +53,18 @@ def deleteRestaurant(restaurant_id):
         if edited:
             db.session.delete(edited)
             db.session.commit()
-            flash("Deleted menu item")
+            flash("Deleted restaurant")
             return redirect(url_for('restaurants.showRestaurants'))
     else:
         return render_template("deleterestaurant.html", restaurant=edited)
+
+
+"""
+# api end points
+@app.route('/restaurants/JSON')
+def restaurantsJSON():
+    session = DBSession()
+    items = session.query(Restaurant).all()
+    return jsonify(Restaurants=[i.serialize for i in items])
+
+"""

@@ -7,6 +7,15 @@
 </head>
 <body>
 <div id ="content">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
 
     <h1 id="main-head">Restaurants</h1>
 
@@ -15,6 +24,7 @@
     {% for i in restaurants %}
         <div class="restaurant">
             <p>{{i.name}}
+                <a href='{{ url_for("menu.showMenu", restaurant_id = i.id) }}'>Show Menu</a>
                 <a href='{{ url_for("restaurants.deleteRestaurant", restaurant_id = i.id) }}'>Delete</a>
                 <a href='{{ url_for("restaurants.editRestaurant", restaurant_id = i.id) }}'>Edit</a>
             </p>

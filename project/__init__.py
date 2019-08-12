@@ -34,4 +34,8 @@ def create_app():
     from restaurants import restaurants as restautants_blueprint
     app.register_blueprint(restautants_blueprint)
 
+    from menu import menu as menu_blueprint
+    app.register_blueprint(menu_blueprint)
+
+
     return app

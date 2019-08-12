@@ -5,19 +5,17 @@
 </head>
 <body>
     <div id ="content">
-        <h1 id="main-head">{{name}}</h1>
-
         {% with messages = get_flashed_messages() %}
-          {% if messages %}
+        {% if messages %}
             <ul class=flashes>
             {% for message in messages %}
-              <li>{{ message }}</li>
+            <li>{{ message }}</li>
             {% endfor %}
             </ul>
-          {% endif %}
-        {% endwith %}
-
-        <a href = '{{url_for("newMenuItem", restaurant_id = restaurant_id) }}'>
+        {% endif %}
+        {% endwith %}       
+        <h1 id="main-head">{{name}}</h1>
+        <a href = '{{url_for("menu.newMenuItem", restaurant_id = restaurant_id) }}'>
         Create New Item</a>
         <h3>Appetizers</h3>
         {% if not entre: %}
@@ -36,9 +34,9 @@
 
                 <p> $ {{i.price}} </p>
 
-                <a href='{{url_for("editMenuItem", restaurant_id = restaurant_id, menu_id = i.id )}}'>Edit</a>
+                <a href='{{url_for("menu.editMenuItem", restaurant_id = restaurant_id, menu_id = i.id )}}'>Edit</a>
 
-                <a href='{{url_for("deleteMenuItem", restaurant_id = restaurant_id, menu_id = i.id, item=i )}}'>Delete</a>
+                <a href='{{url_for("menu.deleteMenuItem", restaurant_id = restaurant_id, menu_id = i.id, item=i )}}'>Delete</a>
 
             </div>
         {% endfor %}
@@ -59,9 +57,9 @@
 
                 <p> $ {{i.price}} </p>
 
-                <a href='{{url_for("editMenuItem", restaurant_id = restaurant_id, menu_id = i.id )}}'>Edit</a>
+                <a href='{{url_for("menu.editMenuItem", restaurant_id = restaurant_id, menu_id = i.id )}}'>Edit</a>
 
-                <a href='{{url_for("deleteMenuItem", restaurant_id = restaurant_id, menu_id = i.id, item=i )}}'>Delete</a>
+                <a href='{{url_for("menu.deleteMenuItem", restaurant_id = restaurant_id, menu_id = i.id, item=i )}}'>Delete</a>
 
             </div>
         {% endfor %}
@@ -83,13 +81,13 @@
 
                 <p> $ {{i.price}} </p>
 
-                <a href='{{url_for("editMenuItem", restaurant_id = restaurant_id, menu_id = i.id )}}'>Edit</a>
+                <a href='{{url_for("menu.editMenuItem", restaurant_id = restaurant_id, menu_id = i.id )}}'>Edit</a>
 
-                <a href='{{url_for("deleteMenuItem", restaurant_id = restaurant_id, menu_id = i.id, item=i )}}'>Delete</a>
+                <a href='{{url_for("menu.deleteMenuItem", restaurant_id = restaurant_id, menu_id = i.id, item=i )}}'>Delete</a>
 
             </div>
         {% endfor %}
-        <a href="{{ url_for('showRestaurants', restaurant_id = restaurant_id) }}">
+        <a href="{{ url_for('restaurants.showRestaurants', restaurant_id = restaurant_id) }}">
             <button>Back</button>
         </a><br>
     </div>

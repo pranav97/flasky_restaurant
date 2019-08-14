@@ -31,8 +31,9 @@
           <li><a href="#">Projects</a></li>
           <li><a href="#">Contact</a></li>
         </ul>
-        {% block logout %}
-        {% endblock %}
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="{{ url_for('auth.logout') }}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+        </ul>
         </div>
       </div>
     </nav>

@@ -7,8 +7,10 @@ main = Blueprint('main', __name__)
 # def index():
 #     return render_template('index.html') 
 
-@main.route('/profile')
-@login_required
-def profile():
-    return render_template('profile.html', name=current_user.name)
-
+# @main.route('/profile')
+# @login_required
+# def profile():
+#     return render_template('profile.html', name=current_user.name)
+#
+#todo add in the about page here
+#todo add in the projects page here

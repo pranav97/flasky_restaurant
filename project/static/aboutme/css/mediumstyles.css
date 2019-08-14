@@ -1,0 +1,32 @@
+@media screen and (min-width: 565px) and (max-width: 849px) {
+    #projects {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+    .header__logo {
+      width: 18%;
+    }
+    .hackforhumanity {
+      width: 46%;
+    }
+    .cruzhacks {
+      width: 46%;
+    }
+    .temeti {
+      width: 60%;
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+    #about_me {
+      display: block;
+    }
+    #introduction {
+      width: 80%;
+      margin-left: 10%;
+    }
+    #pranav_face {
+      width: 50%;
+      margin-left: 25%;
+    }
+}

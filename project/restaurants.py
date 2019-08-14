@@ -10,7 +10,7 @@ from flask_login import login_user, logout_user, login_required
 from . import db
 
 restaurants = Blueprint('restaurants', __name__)
-
+@restaurants.route('/', methods=['GET'])
 @restaurants.route('/restaurants/', methods=['GET'])
 @login_required
 def showRestaurants():

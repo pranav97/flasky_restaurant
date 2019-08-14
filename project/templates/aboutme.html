@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../static/aboutme/css/mainstyles.css">
+    <!-- this is the medium styles stylesheet -->
+    <link rel="stylesheet" type="text/css" href="../static/aboutme/css/mediumstyles.css">
+    <!-- this is the large styles stylesheet -->
+    <link rel="stylesheet" type="text/css" href="../static/aboutme/css/largestyles.css">
+  </head>
+  <body>
+    <!-- this website has a few main parts, header, body and footer. -->
+    <header id="header_container">
+      <img class="header__logo" alt="Designed on logoMakr." src="../static/aboutme/img/logo.png">
+      <div id="header_text">
+        <h1 class="main_header">Pranav Raghavan</h1>
+        <h5 class="tag_line">Full Stack Developer</h5>
+      </div>
+    </header>
+    <main id = "main_container">
+      <!-- this h2 is outside of the projects so that these can be made to fit
+      as inline elements. -->
+      <section id="projects">
+        <!--- NEED A NEW LINE HERE!!!! -->
+        <!-- <article class="temeti project">
+          <h3>Te Meti sportswear</h3>
+          <p>My friend Grase is an entrepreneur and her business sells sportswear
+            though the internet. I have been helping her edit her webpages and make
+            them more elegenet and appealing to her customers as well. It is
+            publically hosted on the worldwide web for everybody to see and I am very
+            greateful that she let me help her with this project.
+            <a  href="http://temitisportswear.com/" target="_blank">
+              <img class="te_meti" src="img/te_meti.png" alt="homepage of te meti">
+            </a>
+          </p>
+        </article> -->
+      </section>
+      <!-- needs to be excluded from either section because it needs to be
+      a block -->
+      <section id="about_me">
+        <button><a href="{{ url_for('restaurants.showRestaurants') }}">Back to the restaurants website</a></button>
+        <h2 class="heading">About Me </h2><br>
+        <img id="pranav_face" src="../static/aboutme/img/pranav.jpg" alt="My photo">
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <p id="introduction">
+          Hello, my name is Pranav Raghavan. 
+          I am a MS Computer Science student at UC Santa Cruz. 
+          I have a broad set of interests in Computer Science, namely - frontend web development, backend development in fields like NLP, algorithms, database design and Systems Programming.
+          </p><br>
+      </section>
+      <footer>
+        Website design &copy; 2018 by Pranav Raghavan
+        <br/>
+        <br/>
+        <a href="https://github.com/pranav97" target="_blank">GitHub</a>
+        <br/>
+        <br/>
+        <a href="https://www.facebook.com/profile.php?id=100009410253702" target="_blank">Facebook</a>
+        <br/>
+        <br/>
+        <a href="https://www.linkedin.com/in/pranav97/" target="_blank">LinkedIn</a>
+        <br/>
+        <br/>
+        <p class ="email">pranav97@yahoo.com</p>
+        <br/>
+      </footer>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- <script>
+      document.getElementById("projects").innerHTML = "Hello JavaScript!";
+    </script> -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+  </body>
+</html>

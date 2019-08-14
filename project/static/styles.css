@@ -1,20 +1,5 @@
-body {
-    max-width: 500px;
-}
-
-#content {
-    border-radius: 25px;
-    max-width: 500px;
-    margin: auto;
-    background: aquamarine;
-    border: 3px solid black;
-    padding: 10px 10px 10px;
-}
-
-#main-head {
-    border-bottom: 3px solid black;
-}
-
-.item {
-    border-bottom: dotted;
+.notification.is-danger {
+    background-color: indianred;
+    padding: 2px;
+    text-align: center;
 }

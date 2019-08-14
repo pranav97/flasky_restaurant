@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/styles.css">
     <title>Flasky Restaurant</title>
 </head>
 
@@ -39,6 +40,15 @@
     </nav>
     <div class="hero-body">
       <div class="container has-text-centered">
+        <div class="flash_messages">
+          {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              <div class="notification is-danger">
+                  {{ messages[0] }}
+              </div>
+            {% endif %}
+          {% endwith %}
+        </div>
         {% block content %}
         {% endblock %}
       </div>

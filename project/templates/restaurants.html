@@ -1,16 +1,6 @@
 
 {% extends "base_logout.html" %}
 {% block content %}
-{% with messages = get_flashed_messages() %}
-{% if messages %}
-    <ul class=flashes>
-    {% for message in messages %}
-    <li>{{ message }}</li>
-    {% endfor %}
-    </ul>
-{% endif %}
-{% endwith %}
-
 <h1 id="main-head">Restaurants</h1>
 
 <a href='{{ url_for("restaurants.newRestaurant") }}'>New</a>

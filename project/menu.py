@@ -11,6 +11,7 @@ from . import db
 
 menu = Blueprint('menu', __name__)
 
+@login_required
 @menu.route('/restaurant/<int:restaurant_id>/')
 @menu.route('/restaurant/<int:restaurant_id>/menu')
 def showMenu(restaurant_id):
@@ -25,7 +26,7 @@ def showMenu(restaurant_id):
         main_course=mainc, 
         desserts=dess)
 
-
+@login_required
 @menu.route('/restaurant/<int:restaurant_id>/menu/new', methods=['GET', 'POST'])
 def newMenuItem(restaurant_id):
     if request.method == 'POST':
@@ -37,6 +38,7 @@ def newMenuItem(restaurant_id):
     else:
         return render_template('newmenuitem.html', restaurant_id=restaurant_id)
 
+@login_required
 @menu.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/edit', methods=['GET', 'POST'])
 def editMenuItem(restaurant_id, menu_id):
     edited = MenuItem.session.query.filter_by(id=menu_id).one()
@@ -56,6 +58,7 @@ def editMenuItem(restaurant_id, menu_id):
             'editmenuitem.html', restaurant_id=restaurant_id, menu_id=menu_id, item=edited)
 
 
+@login_required
 @menu.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/delete', methods=['GET', 'POST'])
 def deleteMenuItem(restaurant_id, menu_id):
     edited = MenuItem.query.filter_by(id=menu_id).one()

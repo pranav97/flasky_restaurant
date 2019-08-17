@@ -1,8 +1,12 @@
 {% extends "base_logout.html" %}
 {% block content %}
-<h1 id="main-head">{{name}}</h1>
-<a href = '{{url_for("menu.newMenuItem", restaurant_id = restaurant_id) }}'>
-Create New Item</a>
+<div class="header">
+    <h1 class="main-head">{{name}}</h1>
+    <button class="new">
+        <a href = '{{url_for("menu.newMenuItem", restaurant_id = restaurant_id) }}'>Create New Item</a>
+    </button>
+</div>
+<br/>
 
 <h3>Appetizers</h3>
 {% if not appetizer: %}

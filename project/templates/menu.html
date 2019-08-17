@@ -3,15 +3,16 @@
 <h1 id="main-head">{{name}}</h1>
 <a href = '{{url_for("menu.newMenuItem", restaurant_id = restaurant_id) }}'>
 Create New Item</a>
-<h3>Soups</h3>
-{% if not soups: %}
+
+<h3>Appetizers</h3>
+{% if not appetizer: %}
     <div class="item">
 
         <p>No Items to show here</p>
 
     </div>
 {% endif %}
-{% for i in soups %}
+{% for i in appetizer %}
     <div class="item">
 
         <p>{{i.name}}</p>
@@ -27,15 +28,15 @@ Create New Item</a>
     </div>
 {% endfor %}
 
-<h3>Appetizers</h3>
-{% if not appetizer: %}
+<h3>Soups</h3>
+{% if not soups: %}
     <div class="item">
 
         <p>No Items to show here</p>
 
     </div>
 {% endif %}
-{% for i in appetizer %}
+{% for i in soups %}
     <div class="item">
 
         <p>{{i.name}}</p>
@@ -74,6 +75,29 @@ Create New Item</a>
     </div>
 {% endfor %}
 
+<h3>Side Orders</h3>
+{% if not sides: %}
+    <div class="item">
+
+        <p>No Items to show here</p>
+
+    </div>
+{% endif %}
+{% for i in sides %}
+    <div class="item">
+
+        <p>{{i.name}}</p>
+
+        <p>{{i.description}}</p>
+
+        <p> $ {{i.price}} </p>
+
+        <a href='{{url_for("menu.editMenuItem", restaurant_id = restaurant_id, menu_id = i.id )}}'>Edit</a>
+
+        <a href='{{url_for("menu.deleteMenuItem", restaurant_id = restaurant_id, menu_id = i.id, item=i )}}'>Delete</a>
+
+    </div>
+{% endfor %}
 <h3>Beverages</h3>
 {% if not beverages: %}
     <div class="item">

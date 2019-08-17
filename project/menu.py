@@ -16,9 +16,10 @@ menu = Blueprint('menu', __name__)
 @menu.route('/restaurant/<int:restaurant_id>/menu')
 def showMenu(restaurant_id):
     restaurant = Restaurant.query.filter_by(id=restaurant_id).first()
-    soups = MenuItem.query.filter_by(restaurant_id=restaurant_id, course="Soups").all()
+    soups = MenuItem.query.filter_by(restaurant_id=restaurant_id, course="Soup").all()
     appetizer = MenuItem.query.filter_by(restaurant_id=restaurant_id, course="Appetizer").all()
     mainc = MenuItem.query.filter_by(restaurant_id=restaurant_id, course="Main Course").all()
+    sides = MenuItem.query.filter_by(restaurant_id=restaurant_id, course="Side Order").all()
     dess = MenuItem.query.filter_by(restaurant_id=restaurant_id, course="Dessert").all()
     beverages = MenuItem.query.filter_by(restaurant_id=restaurant_id, course="Beverage").all()
     return render_template('menu.html', 
@@ -26,6 +27,7 @@ def showMenu(restaurant_id):
         name=restaurant.name, 
         appetizer=appetizer, 
         soups=soups, 
+        sides=sides,
         main_course=mainc, 
         desserts=dess,
         beverages=beverages)

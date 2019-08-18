@@ -3,19 +3,34 @@
 {% block content %}
 <div class="header">
     <h1 class="main-head">Restaurants</h1>
-    <button class="new">
-        <a href='{{ url_for("restaurants.newRestaurant") }}'>New</a>
-    </button>
+    <a href='{{ url_for("restaurants.newRestaurant") }}'>
+        <button class="button newRestaurant">
+            New
+        </button>
+    </a>
 </div>
 <br/>
 
 {% for i in restaurants %}
     <div class="restaurant">
-        <p>{{i.name}}
-            <a href='{{ url_for("menu.showMenu", restaurant_id = i.id) }}'>Show Menu</a>
-            <a href='{{ url_for("restaurants.deleteRestaurant", restaurant_id = i.id) }}'>Delete</a>
-            <a href='{{ url_for("restaurants.editRestaurant", restaurant_id = i.id) }}'>Edit</a>
-        </p>
+        <div class="button showMenu">
+            <a href='{{ url_for("menu.showMenu", restaurant_id = i.id) }}'>{{i.name}}</a> 
+        </div>
+        <div class="button deleteRestaurant">
+            <a href='{{ url_for("restaurants.deleteRestaurant", restaurant_id = i.id) }}'>
+                <button>
+                    Delete
+                </button>
+            </a>
+        </div>
+        <div class="button editRestaurant">
+            <a href='{{ url_for("restaurants.editRestaurant", restaurant_id = i.id) }}'>
+                <button>
+                    Edit
+                </button>
+            </a>
+        </div>
+        
     </div>
 {% endfor %}
 {% endblock %}

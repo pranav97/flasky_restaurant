@@ -1,13 +1,16 @@
 {% extends "base_logout.html" %}
 
-{% block content %
-<h3 id="main-head">New Restaurant</h3>
+{% block content %}
 
-<form action="{{ url_for('editRestaurant', restaurant_id=restaurant.id) }}" method='post'>
+<h3 id="main-head">Edit Restaurant</h3>
+<form action="{{ url_for('restaurants.editRestaurant', restaurant_id=restaurant.id) }}" method='post'>
     Name:<input type = 'text' size='30' name = 'name' value='{{restaurant.name}}'>
+    <br/><br/>
     <input type='submit' value='Edit'>
 </form>
-<a href="{{ url_for('showRestaurants') }}">
+<br/><br/>
+<a href="{{ url_for('restaurants.showRestaurants') }}">
     <button>Back</button>
 </a>
+
 {% endblock %}

@@ -50,9 +50,9 @@
 }
 
 hr.line {
-    border-top: 1px dotted red;
-    padding: 0;
-    margin-top: -10px;
+    border-top: 3px dotted darkolivegreen;
+    padding: 2px;
+    margin-top: -8px;
     margin-bottom: 0;
 }
 
@@ -63,4 +63,15 @@ hr.line {
 
 .item {
     border: 1px solid black;
+    padding: 8px;
+    /* margin: 2px 2px 2px 2px; */
+}
+
+img.header__logo {
+    max-width: 80px;
+    /* max-height: 61px; */
+}
+.form-item {
+    display: flex;
+    justify-content: space-between;
 }

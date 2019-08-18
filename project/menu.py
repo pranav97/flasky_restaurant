@@ -6,7 +6,7 @@ from flask import Blueprint, \
     flash, \
     jsonify
 from .models import Restaurant, MenuItem
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 from . import db
 
 menu = Blueprint('menu', __name__)
@@ -47,7 +47,17 @@ def newMenuItem(restaurant_id):
 @login_required
 @menu.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/edit', methods=['GET', 'POST'])
 def editMenuItem(restaurant_id, menu_id):
-    edited = MenuItem.session.query.filter_by(id=menu_id).one()
+    edited = MenuItem.query.filter_by(id=menu_id).one()
+    to_edit = Restaurant.query.filter_by(id=restaurant_id).one()
+
+    if edited is None:
+        flash("Sorry, that is not a valid menu item.")
+        return redirect(url_for('menu.showMenu', restaurant_id=restaurant_id))
+
+    if current_user.id != to_edit.user_id:
+        flash("Sorry, you don't have permissions to edit {}. Please edit something you created. ".format(to_edit.name))
+        return redirect(url_for('menu.showMenu', restaurant_id=restaurant_id))
+
     if request.method == 'POST':
         if request.form['name']:
             edited.name = request.form['name']
@@ -68,6 +78,16 @@ def editMenuItem(restaurant_id, menu_id):
 @menu.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/delete', methods=['GET', 'POST'])
 def deleteMenuItem(restaurant_id, menu_id):
     edited = MenuItem.query.filter_by(id=menu_id).one()
+    toDelete = Restaurant.query.filter_by(id=restaurant_id).one()
+
+    if edited is None:
+        flash("Sorry, that is not a valid menu item.")
+        return redirect(url_for('menu.showMenu', restaurant_id=restaurant_id))
+
+    if current_user.id != toDelete.user_id:
+        flash("Sorry, you don't have permissions to edit {}. Please edit something you created. ".format(toDelete.name))
+        return redirect(url_for('menu.showMenu', restaurant_id=restaurant_id))
+
     if request.method == "POST":
         if edited:
             db.session.delete(edited)

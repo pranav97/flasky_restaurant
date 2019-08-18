@@ -4,9 +4,12 @@
 <h3 id="main-head">New Restaurant</h3>
 
 <form action="{{ url_for('restaurants.newRestaurant') }}" method='post'>
-    Name: <input type="text" name="name" placeholder="new restaurant"><br>
+    Name: <input type="text" name="name" placeholder="new restaurant">
+    <br/><br/>
     <input type="submit" value="submit">
 </form>
+<br/>
+<br/>
 <a href="{{ url_for('restaurants.showRestaurants') }}">
     <button>Back</button>
 </a>

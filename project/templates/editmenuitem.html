@@ -1,17 +1,32 @@
 {% extends "base_logout.html" %}
 
 {% block content %}
-<form action= "{{url_for('editMenuItem', restaurant_id = restaurant_id, menu_id=item.id)}}" method = 'POST'>
-    Name: <input type="text" name="name" value="{{item.name}}"><br>
-    Description: <input type="text" name="description" value="{{item.description}}"><br>
-    Course:
+<form action= "{{url_for('menu.editMenuItem', restaurant_id = restaurant_id, menu_id=item.id)}}" method = 'POST'>
+    <div class="form-item">
+        <label>Name</label> <input type="text" name="name" value="{{item.name}}">
+    </div>
+    <br/>
+    <div class="form-item">
+        <label>Description</label> <input type="text" name="description" value="{{item.description}}">
+    </div>
+    <br/>
+    <div class="form-item">
+        <label>Course</label>
         <select name="course" selected="Appetizer">
            <option value = "Appetizer" {% if item.course=="Appetizer" %} selected="selected" {% endif %} >Appetizer</option>
            <option value = "Main Course" {% if item.course=="Main Course" %} selected="selected" {% endif %} >Main Course</option>
            <option value = "Dessert" {% if item.course=="Dessert" %} selected="selected" {% endif %} >Dessert</option>
-         </select><br>
-    Price: <input type="text" name="price" value="{{item.price}}"><br>
+        </select>
+    </div>
+    <br/>
+    <div class="form-item">
+        <label>Price</label>
+        <input type="text" name="price" value="{{item.price}}">
+    </div>
+    <br/>
     <input type='submit' value='Edit'>
 </form>
-<a href= "{{url_for('showMenu', restaurant_id= item.restaurant_id)}}"><button>Cancel</button></a>
+<br/>
+
+<a href= "{{url_for('menu.showMenu', restaurant_id= item.restaurant_id)}}"><button>Cancel</button></a>
 {% endblock %}

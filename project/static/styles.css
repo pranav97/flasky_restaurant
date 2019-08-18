@@ -39,3 +39,28 @@
 .showMenu {
     flex: 3;
 }
+
+.price-name {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.price-name-line {
+}
+
+hr.line {
+    border-top: 1px dotted red;
+    padding: 0;
+    margin-top: -10px;
+    margin-bottom: 0;
+}
+
+.links {
+    display: flex;
+    justify-content: space-between;
+}
+
+.item {
+    border: 1px solid black;
+}

@@ -2,7 +2,9 @@
 {% extends "base_logout.html" %}
 {% block content %}
 <div class="header">
-    <h1 class="main-head">Restaurants</h1>
+    <div class="main-head">
+        <h1 >Restaurants</h1>
+    </div>
     <a href='{{ url_for("restaurants.newRestaurant") }}'>
         <button class="button newRestaurant">
             New

@@ -5,37 +5,34 @@ from flask_login import LoginManager
 # init SQLAlchemy so we can use it later in our models
 db = SQLAlchemy()
 
-def create_app():
-    app = Flask(__name__)
 
-    app.config['SECRET_KEY'] = '9OLWxND4o83j4K4iuopO'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
+app = Flask(__name__)
 
-    db.init_app(app)
+app.config['SECRET_KEY'] = '9OLWxND4o83j4K4iuopO'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
 
-    login_manager = LoginManager()
-    login_manager.login_view = 'auth.login'
-    login_manager.init_app(app)
+db.init_app(app)
 
-    from .models import User, Restaurant
+login_manager = LoginManager()
+login_manager.login_view = 'auth.login'
+login_manager.init_app(app)
 
-    @login_manager.user_loader
-    def load_user(user_id):
-        return User.query.get(int(user_id))
+from .models import User, Restaurant
 
-    # blueprint for auth routes in our app
-    from auth import auth as auth_blueprint
-    app.register_blueprint(auth_blueprint)
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
-    # blueprint for non-auth parts of app
-    from main import main as main_blueprint
-    app.register_blueprint(main_blueprint)
+# blueprint for auth routes in our app
+from auth import auth as auth_blueprint
+app.register_blueprint(auth_blueprint)
 
-    from restaurants import restaurants as restautants_blueprint
-    app.register_blueprint(restautants_blueprint)
+# blueprint for non-auth parts of app
+from main import main as main_blueprint
+app.register_blueprint(main_blueprint)
 
-    from menu import menu as menu_blueprint
-    app.register_blueprint(menu_blueprint)
+from restaurants import restaurants as restautants_blueprint
+app.register_blueprint(restautants_blueprint)
 
-
-    return app
+from menu import menu as menu_blueprint
+app.register_blueprint(menu_blueprint)
